@@ -1,0 +1,73 @@
+package oprajneniq;
+
+import java.util.Scanner;
+
+public class Dishwasher {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int bottlesDetergent = Integer.parseInt(scanner.nextLine());
+
+        double mlDetergent = bottlesDetergent * 750;
+        double plateDetergent = 5;
+        double potDetergent = 15;
+
+        int plateConter = 0;
+        int potCounter = 0;
+        int dishesCounter = 0;
+
+
+        while (mlDetergent >= 0) {
+            String input = scanner.nextLine();
+            if (input.equals("End")) {
+                System.out.println("Detergent was enough!");
+                System.out.printf("%d dishes and %d pots were washed.%n", plateConter, potCounter);
+                System.out.printf("Leftover detergent %.0f ml.%n", mlDetergent);
+                break;
+
+            }
+
+
+            int dishes = Integer.parseInt(input);
+            dishesCounter++;
+            if (dishesCounter % 3 == 0) {
+                mlDetergent -= dishes * potDetergent;
+                potCounter += dishes;
+
+
+            } else {
+                mlDetergent -= dishes * plateDetergent;
+                plateConter += dishes;
+
+
+            }
+
+            if (mlDetergent < 0) {
+                System.out.printf("Not enough detergent, %.0f ml. more necessary!", Math.abs(mlDetergent));
+            }
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
